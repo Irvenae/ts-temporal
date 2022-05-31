@@ -1,0 +1,37 @@
+import { Worker } from '@temporalio/worker';
+import { WorkflowClient } from '@temporalio/client';
+import { createWorker } from '../worker';
+import { example } from '../workflows';
+import { terminateRunningTestWorkflow } from './utils';
+
+const taskQueue = 'hello';
+
+describe('Test hello world workflow.', () => {
+    let worker: Worker;
+    let workerRunning: Promise<void>;
+    beforeAll(async () => {
+        worker = await createWorker(taskQueue);
+        workerRunning = worker.run(); // Do not await, because we will shut it down after the test.
+    }, 1000 * 60);
+    afterAll(async () => {
+        worker.shutdown();
+        await workerRunning; // Wait for shutdown.
+    });
+    it(
+        'run test assume Temporal cluster is up.',
+        async () => {
+            const workflowId = 'test-hello';
+            const client = new WorkflowClient();
+            await terminateRunningTestWorkflow(client, workflowId);
+
+            const res = await client.execute(example, {
+                taskQueue,
+                workflowId,
+                args: ["test"]
+            });
+
+            expect(res).toBe("Hello, test!");
+        },
+        1000 * 100
+    );
+});
