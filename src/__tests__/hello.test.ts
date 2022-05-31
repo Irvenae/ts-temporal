@@ -6,7 +6,7 @@ import { terminateRunningTestWorkflow } from './utils';
 
 const taskQueue = 'hello';
 
-describe('Test hello world workflow.', () => {
+xdescribe('Test hello world workflow with Temporal cluster.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     beforeAll(async () => {
@@ -18,7 +18,7 @@ describe('Test hello world workflow.', () => {
         await workerRunning; // Wait for shutdown.
     });
     it(
-        'run test assume Temporal cluster is up.',
+        'Run test.',
         async () => {
             const workflowId = 'test-hello';
             const client = new WorkflowClient();
