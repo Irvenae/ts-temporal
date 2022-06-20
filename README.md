@@ -11,13 +11,35 @@ Test for temporal in typescript.
 yarn install
 ```
 
+## How to start
+
+The temporal cluster first needs to be started with docker-compose.
+In another terminal at another location do
+
+```bash
+git clone https://github.com/temporalio/docker-compose.git temporal
+cd temporal
+docker-compose up
+```
+
+After launching you can check Temporal web UI at port 8088. The port can be changed by setting the env variable TEMPORAL_WEB_PORT.
+Now you can launch tests using Temporal or start a worker and client.
+
+### Start worker
+
+yarn run worker
+
+### Start client
+
+yarn run client
+
+
 ## Test
 
 ```
 yarn test
 ```
 
-Make sure to run the temporal cluster with docker compose in a separate terminal to be able to successfully run hello.test.ts.
 When trying to run the helloTestFramework test in vscode with breakpoints I get a segmentation fault :(
 
 ```
@@ -55,3 +77,7 @@ PID 45340 received SIGSEGV for address: 0x0
 30  node                                0x0000000100cc9ee0 uv__work_done + 192
 31  node                                0x0000000100ccd67c uv__async_io + 320
 ```
+
+### Replay workflow
+
+You can easily replay and debug a workflow by running `replay.test.ts` with the correct workflowId.

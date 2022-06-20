@@ -1,7 +1,7 @@
 import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
-export async function defaultWorkerOptions() {
+export function defaultWorkerOptions() {
     return {
       workflowsPath: require.resolve('./workflows'),
       activities,
