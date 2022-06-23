@@ -2,11 +2,11 @@ import { Worker } from '@temporalio/worker';
 import { WorkflowClient } from '@temporalio/client';
 import { createWorker } from '../worker';
 import { example } from '../workflows';
-import { terminateRunningTestWorkflow } from './utils';
+import { terminateRunningTestWorkflow } from '../utils';
 
 const taskQueue = 'hello';
 
-xdescribe('Test hello world workflow with Temporal cluster.', () => {
+describe('Test hello world workflow with Temporal cluster.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     beforeAll(async () => {

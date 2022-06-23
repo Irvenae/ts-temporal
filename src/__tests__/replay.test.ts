@@ -2,13 +2,13 @@ import { Worker } from '@temporalio/worker';
 import { Connection } from '@temporalio/client';
 import { defaultWorkerOptions } from '../worker';
 
-xdescribe('replay', () => {
+describe('replay', () => {
   it(
     'replay workflow',
     async () => {
-      const workflowId = 'workflow-hello';
-      const connection = new Connection({});
-      const { history } = await connection.service.getWorkflowExecutionHistory({
+      const workflowId = 'test-hello';
+      const connection = await Connection.connect({});
+      const { history } = await connection.workflowService.getWorkflowExecutionHistory({
         namespace: 'default',
         execution: {
           workflowId
