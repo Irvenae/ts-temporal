@@ -5,7 +5,7 @@ export async function terminateRunningTestWorkflow(client: WorkflowClient, workf
     const handle = client.getHandle(workflowId);
     try {
         if (
-            (await handle.describe()).status.code ===
+            (await handle.describe()).status ===
             temporal.api.enums.v1.WorkflowExecutionStatus.WORKFLOW_EXECUTION_STATUS_RUNNING
         ) {
             await handle.terminate('Starting new test');

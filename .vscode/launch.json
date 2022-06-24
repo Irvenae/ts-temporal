@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Test Current File",
-            "args": ["--experimental-vm-modules", "${workspaceFolder}/node_modules/.bin/jest", "--testTimeout=600000", "--runInBand", "${relativeFile}"],
+            "args": ["${workspaceFolder}/node_modules/.bin/jest", "--testTimeout=600000", "--runInBand", "${relativeFile}", "--no-cache"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",

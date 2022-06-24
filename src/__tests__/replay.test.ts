@@ -6,9 +6,9 @@ describe('replay', () => {
   it(
     'replay workflow',
     async () => {
-      const workflowId = 'test-hello';
-      const connection = await Connection.connect({});
-      const { history } = await connection.workflowService.getWorkflowExecutionHistory({
+      const workflowId = 'test-cancelation';
+      const connection = new Connection({});
+      const { history } = await connection.service.getWorkflowExecutionHistory({
         namespace: 'default',
         execution: {
           workflowId

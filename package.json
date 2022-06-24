@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "tsc --build ./tsconfig.json",
     "clean": "rm -rf node_modules; rm -rf lib",
     "lint": "eslint .",
     "worker": "ts-node src/runWorker.ts",
@@ -16,7 +17,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "temporalio": "^1.0.0-rc.0",
+    "temporalio": "^0.23.2",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.2"
   },
@@ -24,7 +25,7 @@
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
-    "@temporalio/testing": "^1.0.0-rc.0",
+    "@temporalio/testing": "^0.23.3",
     "@tsconfig/node16": "^1.0.2",
     "@types/jest": "^27.5.1",
     "@typescript-eslint/eslint-plugin": "^5.27.0",

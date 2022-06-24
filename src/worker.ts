@@ -5,6 +5,7 @@ export function defaultWorkerOptions() {
     return {
       workflowsPath: require.resolve('./workflows'),
       activities,
+      shutdownGraceTime: '10s',
       debugMode: true
     };
   }
