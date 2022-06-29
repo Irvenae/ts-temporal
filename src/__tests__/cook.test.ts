@@ -168,4 +168,44 @@ describe('Test Spaghetti.', () => {
         },
         1000 * 10
     );
+
+    it(
+      'Cancel with compensation test.',
+      async () => {
+          const workflowId = 'test-cancelation-compensation';
+          const connection = new Connection({});
+          const client = new WorkflowClient(connection.service);
+          await terminateRunningTestWorkflow(client, workflowId);
+
+          await client.start(makeSpaghetti, {
+              taskQueue,
+              workflowId,
+              args: [Meal.SPAGHETTI]
+          });
+
+          const handle = await client.getHandle(workflowId);
+          await new Promise( f => setTimeout(f, 2500)); 
+          await handle.signal(cancelOrderSignal);
+          const res = await handle.result();
+
+          expect(res).toBe(Sauce.NO_SAUCE);
+          
+          const { history } = await connection.service.getWorkflowExecutionHistory({
+              namespace: 'default',
+              execution: {
+                workflowId
+              }
+            });
+
+            const foundActivities: string[] = [];
+            history!.events!.forEach(event => {
+              if (event.activityTaskScheduledEventAttributes) {
+                  const activityName = event!.activityTaskScheduledEventAttributes!.activityType!.name!;
+                  foundActivities.push(activityName);
+              }
+            });
+          expect(foundActivities).toEqual(["getVegetables", "returnVegetables"]);
+      },
+      1000 * 10
+  );
 });

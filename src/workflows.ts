@@ -1,9 +1,10 @@
-import { proxyActivities, defineSignal, setHandler, CancellationScope, isCancellation } from '@temporalio/workflow';
+import { proxyActivities, defineSignal, setHandler, CancellationScope, isCancellation, sleep } from '@temporalio/workflow';
+
 // Only import the activity types
 import type * as activities from './activities';
 import { Meal, Sauce } from './types';
 
-const { greet, getVegetables, makeSauce, getMeat, bakeMeat, addMeatToSauce } = proxyActivities<typeof activities>({
+const { greet, getVegetables, makeSauce, getMeat, bakeMeat, addMeatToSauce, returnVegetables } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
@@ -13,6 +14,26 @@ export async function example(name: string): Promise<string> {
 }
 
 export const cancelOrderSignal = defineSignal('cancelOrder');
+
+interface Compensation {
+  msg: string;
+  fn: () => Promise<void>;
+}
+
+async function compensate(compensations: Compensation[] = []) {
+  if (compensations.length > 0) {
+    console.log('Compensating for cancelled spaghetti.');
+    for (const comp of compensations) {
+      try {
+        console.log(comp.msg);
+        await comp.fn();
+      } catch (err) {
+        console.log(`Failed to compensate: ${err}`);
+        // swallow errors
+      }
+    }
+  }
+}
 
 export async function makeSpaghetti(meal: Meal): Promise<string> {
   const scope = new CancellationScope();
@@ -24,10 +45,14 @@ export async function makeSpaghetti(meal: Meal): Promise<string> {
     }
   });
 
-  try {    
+  const compensations: Compensation[] = [];
+  try {
     return await scope.run(async() => {
       const vegetables = await getVegetables(meal);
+      compensations.unshift({msg: "Return Vegetables", fn: returnVegetables.bind(null, vegetables)});
+      await sleep(1000);
       const saucePromise = makeSauce(vegetables);
+      compensations.splice(0, 1);
       if (meal === Meal.SPAGHETTI) {
         const meat = await getMeat(meal);
         const bakedMeat = await bakeMeat(meat);
@@ -37,6 +62,7 @@ export async function makeSpaghetti(meal: Meal): Promise<string> {
       return await saucePromise;
     });
   } catch(e) {
+    await compensate(compensations);
     if (isCancellation(e)) {
       return Sauce.NO_SAUCE;
     } else {
