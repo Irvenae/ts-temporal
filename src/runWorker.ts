@@ -1,7 +1,8 @@
 import { createWorker } from "./worker";
 
 async function runWorker() {
-    const worker = await createWorker( "taskQueue");
+    const worker = await createWorker('cooking');
+
     await worker.run();
   }
   

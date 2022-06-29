@@ -18,7 +18,7 @@ describe('Test Spaghetti.', () => {
       worker.shutdown();
       await workerRunning; // Wait for shutdown.
     }, 1000 * 60);
-    it(
+    xit(
         'Run Veggie test.',
         async () => {
             const workflowId = 'test-veggie';
@@ -51,5 +51,40 @@ describe('Test Spaghetti.', () => {
             expect(foundActivities).toEqual(["getVegetables", "makeSauce"]);
         },
         1000 * 20
+    );
+
+    it(
+        'Run meat test.',
+        async () => {
+            const workflowId = 'test-meat';
+            const connection = new Connection({});
+            const client = new WorkflowClient(connection.service);
+            await terminateRunningTestWorkflow(client, workflowId);
+            
+            const res = await client.execute(makeSpaghetti, {
+                taskQueue,
+                workflowId,
+                args: [Meal.SPAGHETTI]
+            });
+
+            expect(res).toBe(Sauce.SAUCE_WITH_MEAT);
+
+            const { history } = await connection.service.getWorkflowExecutionHistory({
+                namespace: 'default',
+                execution: {
+                  workflowId
+                }
+              });
+
+              const foundActivities: string[] = [];
+              history!.events!.forEach(event => {
+                if (event.activityTaskScheduledEventAttributes) {
+                    const activityName = event!.activityTaskScheduledEventAttributes!.activityType!.name!;
+                    foundActivities.push(activityName);
+                }
+              });
+            expect(foundActivities).toEqual(["getVegetables", "makeSauce", "getMeat", "bakeMeat", "addMeatToSauce"]);
+        },
+        1000 * 30
     );
 });
