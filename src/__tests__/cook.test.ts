@@ -1,7 +1,7 @@
 import { Worker } from '@temporalio/worker';
 import { WorkflowClient, Connection } from '@temporalio/client';
 import { createWorker } from '../worker';
-import { makeSpaghetti } from '../workflows';
+import { makeSpaghetti, cancelOrderSignal } from '../workflows';
 import { terminateRunningTestWorkflow } from '../utils';
 import { Meal, Sauce } from '../types';
 
@@ -86,5 +86,86 @@ describe('Test Spaghetti.', () => {
             expect(foundActivities).toEqual(["getVegetables", "makeSauce", "getMeat", "bakeMeat", "addMeatToSauce"]);
         },
         1000 * 30
+    );
+
+    it(
+        'Cancel order test.',
+        async () => {
+            // TODO: Figure out why test fails.
+            const workflowId = 'test-cancelation';
+            const connection = new Connection({});
+            const client = new WorkflowClient(connection.service);
+            await terminateRunningTestWorkflow(client, workflowId);
+
+            await client.start(makeSpaghetti, {
+                taskQueue,
+                workflowId,
+                args: [Meal.SPAGHETTI]
+            });
+
+            const handle = await client.getHandle(workflowId);
+            await new Promise( f => setTimeout(f, 4000)); 
+            await handle.signal(cancelOrderSignal);
+            const res = await handle.result();
+
+            expect(res).toBe(Sauce.NO_SAUCE);
+            
+            const { history } = await connection.service.getWorkflowExecutionHistory({
+                namespace: 'default',
+                execution: {
+                  workflowId
+                }
+              });
+
+              const foundActivities: string[] = [];
+              history!.events!.forEach(event => {
+                if (event.activityTaskScheduledEventAttributes) {
+                    const activityName = event!.activityTaskScheduledEventAttributes!.activityType!.name!;
+                    foundActivities.push(activityName);
+                }
+              });
+            expect(foundActivities).toEqual(["getVegetables", "makeSauce", "getMeat"]);
+        },
+        1000 * 10
+    );
+
+    it(
+        'Cancel order test, cancelation too late.',
+        async () => {
+            const workflowId = 'test-too-late-cancelation';
+            const connection = new Connection({});
+            const client = new WorkflowClient(connection.service);
+            await terminateRunningTestWorkflow(client, workflowId);
+
+            await client.start(makeSpaghetti, {
+                taskQueue,
+                workflowId,
+                args: [Meal.SPAGHETTI]
+            });
+
+            const handle = await client.getHandle(workflowId);
+            await new Promise( f => setTimeout(f, 6000)); 
+            await handle.signal(cancelOrderSignal);
+            const res = await handle.result();
+
+            expect(res).toBe(Sauce.SAUCE_WITH_MEAT);
+
+            const { history } = await connection.service.getWorkflowExecutionHistory({
+                namespace: 'default',
+                execution: {
+                  workflowId
+                }
+              });
+
+              const foundActivities: string[] = [];
+              history!.events!.forEach(event => {
+                if (event.activityTaskScheduledEventAttributes) {
+                    const activityName = event!.activityTaskScheduledEventAttributes!.activityType!.name!;
+                    foundActivities.push(activityName);
+                }
+              });
+            expect(foundActivities).toEqual(["getVegetables", "makeSauce", "getMeat", "bakeMeat", "addMeatToSauce"]);
+        },
+        1000 * 10
     );
 });
