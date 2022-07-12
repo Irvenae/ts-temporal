@@ -14,6 +14,7 @@ export async function example(name: string): Promise<string> {
 export const testSignal = defineSignal("test");
 
 export async function testCondition() {
+  debugger;
   let state = 'WAITING_ON_INPUT';
   setHandler(testSignal, () => {
     state = 'UPDATE';

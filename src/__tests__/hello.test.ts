@@ -6,7 +6,7 @@ import { terminateRunningTestWorkflow } from '../utils';
 
 const taskQueue = 'hello';
 
-describe('Test hello world workflow with Temporal cluster.', () => {
+xdescribe('Test hello world workflow with Temporal cluster.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     beforeAll(async () => {

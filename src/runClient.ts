@@ -2,9 +2,9 @@ import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 
 async function runClient() {
-  const connection = new Connection({});
+  const connection = await Connection.connect({});
 
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient({connection});
 
   const handle = await client.start(example, {
     args: ['Temporal'],

@@ -42,38 +42,38 @@ When trying to run the helloTestFramework test in vscode with breakpoints I get 
 
 ```
 PID 45340 received SIGSEGV for address: 0x0
-0   segfault-handler.node               0x00000001051dd450 _ZL16segfault_handleriP9__siginfoPv + 272
-1   libsystem_platform.dylib            0x00000001981204e4 _sigtramp + 56
-2   node                                0x00000001003915ac _ZN4node6loaderL23ImportModuleDynamicallyEN2v85LocalINS1_7ContextEEENS2_INS1_4DataEEENS2_INS1_5ValueEEENS2_INS1_6StringEEENS2_INS1_10FixedArrayEEE + 228
-3   node                                0x000000010065d768 _ZN2v88internal7Isolate38RunHostImportModuleDynamicallyCallbackENS0_6HandleINS0_6ScriptEEENS2_INS0_6ObjectEEENS0_11MaybeHandleIS5_EE + 848
-4   node                                0x0000000100a20704 _ZN2v88internal25Runtime_DynamicImportCallEiPmPNS0_7IsolateE + 272
-5   node                                0x0000000100d623c4 Builtins_CEntry_Return1_DontSaveFPRegs_ArgvInRegister_NoBuiltinExit + 100
-6   node                                0x0000000100df89b8 Builtins_CallRuntimeHandler + 88
-7   node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-8   node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-9   node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-10  node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-11  node                                0x0000000100dac42c Builtins_PromiseConstructor + 2316
-12  node                                0x0000000100ce9654 Builtins_JSBuiltinsConstructStub + 340
-13  node                                0x0000000100df9398 Builtins_ConstructHandler + 664
-14  node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-15  node                                0x0000000100cec3f8 Builtins_InterpreterEntryTrampoline + 248
-16  node                                0x0000000100d1ec34 Builtins_AsyncFunctionAwaitResolveClosure + 84
-17  node                                0x0000000100dae018 Builtins_PromiseFulfillReactionJob + 56
-18  node                                0x0000000100d10990 Builtins_RunMicrotasks + 592
-19  node                                0x0000000100cea0e4 Builtins_JSRunMicrotasksEntry + 164
-20  node                                0x000000010064326c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 2696
-21  node                                0x0000000100643768 _ZN2v88internal12_GLOBAL__N_118InvokeWithTryCatchEPNS0_7IsolateERKNS1_12InvokeParamsE + 88
-22  node                                0x0000000100643944 _ZN2v88internal9Execution16TryRunMicrotasksEPNS0_7IsolateEPNS0_14MicrotaskQueueEPNS0_11MaybeHandleINS0_6ObjectEEE + 64
-23  node                                0x0000000100669ee4 _ZN2v88internal14MicrotaskQueue13RunMicrotasksEPNS0_7IsolateE + 336
-24  node                                0x000000010066a77c _ZN2v88internal14MicrotaskQueue17PerformCheckpointEPNS_7IsolateE + 124
-25  node                                0x0000000100311db4 _ZN4node21InternalCallbackScope5CloseEv + 388
-26  node                                0x000000010031248c _ZN4node20InternalMakeCallbackEPNS_11EnvironmentEN2v85LocalINS2_6ObjectEEES5_NS3_INS2_8FunctionEEEiPNS3_INS2_5ValueEEENS_13async_contextE + 548
-27  node                                0x0000000100327454 _ZN4node9AsyncWrap12MakeCallbackEN2v85LocalINS1_8FunctionEEEiPNS2_INS1_5ValueEEE + 204
-28  node                                0x00000001003c8430 _ZN4node2fs13FSReqCallback7ResolveEN2v85LocalINS2_5ValueEEE + 220
-29  node                                0x00000001003c8bf4 _ZN4node2fs9AfterStatEP7uv_fs_s + 72
-30  node                                0x0000000100cc9ee0 uv__work_done + 192
-31  node                                0x0000000100ccd67c uv__async_io + 320
+0   segfault-handler.node               0x000000010cc91458 _ZL16segfault_handleriP9__siginfoPv + 272
+1   libsystem_platform.dylib            0x00000001b63384e4 _sigtramp + 56
+2   node                                0x00000001000e5a88 _ZN4node6loaderL23ImportModuleDynamicallyEN2v85LocalINS1_7ContextEEENS2_INS1_14ScriptOrModuleEEENS2_INS1_6StringEEENS2_INS1_10FixedArrayEEE + 236
+3   node                                0x000000010038f67c _ZN2v88internal7Isolate38RunHostImportModuleDynamicallyCallbackENS0_6HandleINS0_6ScriptEEENS2_INS0_6ObjectEEENS0_11MaybeHandleIS5_EE + 248
+4   node                                0x0000000100704e14 _ZN2v88internal25Runtime_DynamicImportCallEiPmPNS0_7IsolateE + 396
+5   node                                0x0000000100a14a04 Builtins_CEntry_Return1_DontSaveFPRegs_ArgvInRegister_NoBuiltinExit + 100
+6   node                                0x0000000100aa2dd8 Builtins_CallRuntimeHandler + 88
+7   node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+8   node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+9   node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+10  node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+11  node                                0x0000000100a5ae00 Builtins_PromiseConstructor + 2176
+12  node                                0x00000001009a5650 Builtins_JSBuiltinsConstructStub + 368
+13  node                                0x0000000100aa3770 Builtins_ConstructHandler + 656
+14  node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+15  node                                0x00000001009a8418 Builtins_InterpreterEntryTrampoline + 248
+16  node                                0x00000001009d7a14 Builtins_AsyncFunctionAwaitResolveClosure + 84
+17  node                                0x0000000100a5c8b8 Builtins_PromiseFulfillReactionJob + 56
+18  node                                0x00000001009c9df4 Builtins_RunMicrotasks + 596
+19  node                                0x00000001009a60e4 Builtins_JSRunMicrotasksEntry + 164
+20  node                                0x0000000100377a1c _ZN2v88internal12_GLOBAL__N_16InvokeEPNS0_7IsolateERKNS1_12InvokeParamsE + 2332
+21  node                                0x0000000100377e50 _ZN2v88internal12_GLOBAL__N_118InvokeWithTryCatchEPNS0_7IsolateERKNS1_12InvokeParamsE + 88
+22  node                                0x0000000100377f3c _ZN2v88internal9Execution16TryRunMicrotasksEPNS0_7IsolateEPNS0_14MicrotaskQueueEPNS0_11MaybeHandleINS0_6ObjectEEE + 64
+23  node                                0x000000010039ab78 _ZN2v88internal14MicrotaskQueue13RunMicrotasksEPNS0_7IsolateE + 336
+24  node                                0x000000010039b40c _ZN2v88internal14MicrotaskQueue17PerformCheckpointEPNS_7IsolateE + 124
+25  node                                0x0000000100065db4 _ZN4node21InternalCallbackScope5CloseEv + 388
+26  node                                0x000000010006648c _ZN4node20InternalMakeCallbackEPNS_11EnvironmentEN2v85LocalINS2_6ObjectEEES5_NS3_INS2_8FunctionEEEiPNS3_INS2_5ValueEEENS_13async_contextE + 548
+27  node                                0x0000000100066774 _ZN4node12MakeCallbackEPN2v87IsolateENS0_5LocalINS0_6ObjectEEENS3_INS0_8FunctionEEEiPNS3_INS0_5ValueEEENS_13async_contextE + 180
+28  node                                0x00000001000c12c4 _ZN4node11Environment14CheckImmediateEP10uv_check_s + 160
+29  node                                0x0000000100990674 uv__run_check + 152
+30  node                                0x000000010098a3d0 uv_run + 396
+31  node                                0x0000000100066ccc _ZN4node13SpinEventLoopEPNS_11EnvironmentE + 244
 ```
 
 ### Replay workflow
