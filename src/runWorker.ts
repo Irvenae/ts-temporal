@@ -1,4 +1,4 @@
-import { createWorker } from "./worker";
+import { createWorker } from "worker";
 
 async function runWorker() {
     const worker = await createWorker( "taskQueue");

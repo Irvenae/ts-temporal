@@ -6,7 +6,9 @@
       "declarationMap": true,
       "sourceMap": true,
       "rootDir": "./src",
-      "outDir": "./lib"
+      "outDir": "./lib",
+      "baseUrl": "./src"
     },
-    "include": ["src/**/*.ts"]
+    "include": ["src/**/*.ts"],
+    
   }

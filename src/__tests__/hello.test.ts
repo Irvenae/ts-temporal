@@ -1,8 +1,8 @@
 import { Worker } from '@temporalio/worker';
 import { WorkflowClient } from '@temporalio/client';
-import { createWorker } from '../worker';
-import { example } from '../workflows';
-import { terminateRunningTestWorkflow } from '../utils';
+import { createWorker } from 'worker';
+import { example } from 'workflows';
+import { terminateRunningTestWorkflow } from 'utils';
 
 const taskQueue = 'hello';
 

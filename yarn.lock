@@ -1286,6 +1286,35 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/api/-/api-1.1.0.tgz#563539048255bbe1a5f4f586a4a10a1bb737f44a"
   integrity sha512-hf+3bwuBwtXsugA2ULBc95qxrOqP2pOekLz34BJhcAKawt94vfeNyUKpYc0lZQ/3sCP6LqRa7UAdHA7i5UODzQ==
 
+"@opentelemetry/core@1.6.0", "@opentelemetry/core@^1.3.1":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/core/-/core-1.6.0.tgz#c55f8ab7496acef7dbd8c4eedef6a4d4a0143c95"
+  integrity sha512-MsEhsyCTfYme6frK8/AqEWwbS9SB3Ta5bjgz4jPQJjL7ijUM3JiLVvqh/kHo1UlUjbUbLmGG7jA5Nw4d7SMcLQ==
+  dependencies:
+    "@opentelemetry/semantic-conventions" "1.6.0"
+
+"@opentelemetry/resources@1.6.0", "@opentelemetry/resources@^1.3.1":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/resources/-/resources-1.6.0.tgz#9756894131b9b0dfbcc0cecb5d4bd040d9c1b09d"
+  integrity sha512-07GlHuq72r2rnJugYVdGumviQvfrl8kEPidkZSVoseLVfIjV7nzxxt5/vqs9pK7JItWOrvjRdr/jTBVayFBr/w==
+  dependencies:
+    "@opentelemetry/core" "1.6.0"
+    "@opentelemetry/semantic-conventions" "1.6.0"
+
+"@opentelemetry/sdk-trace-base@^1.3.1":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/sdk-trace-base/-/sdk-trace-base-1.6.0.tgz#8b1511c0b0f3e6015e345f5ed4a683adf03e3e3c"
+  integrity sha512-yx/uuzHdT0QNRSEbCgXHc0GONk90uvaFcPGaNowIFSl85rTp4or4uIIMkG7R8ckj8xWjDSjsaztH6yQxoZrl5g==
+  dependencies:
+    "@opentelemetry/core" "1.6.0"
+    "@opentelemetry/resources" "1.6.0"
+    "@opentelemetry/semantic-conventions" "1.6.0"
+
+"@opentelemetry/semantic-conventions@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/semantic-conventions/-/semantic-conventions-1.6.0.tgz#ed410c9eb0070491cff9fe914246ce41f88d6f74"
+  integrity sha512-aPfcBeLErM/PPiAuAbNFLN5sNbZLc3KZlar27uohllN8Zs6jJbHyJU1y7cMA6W/zuq+thkaG8mujiS+3iD/FWQ==
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -1454,111 +1483,127 @@
   dependencies:
     defer-to-connect "^2.0.1"
 
-"@temporalio/activity@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/activity/-/activity-1.0.0-rc.1.tgz#0326214a42775f3fbf543ac42f335c1cff84897c"
-  integrity sha512-LBWDqwrPgjP2rNnVSiFm+yxO8+eTPxExsjBM2WV6VIg706Y4KsdAbM8xEZWgzt1AqXCeJNlWvuw/d58QDJK/2g==
+"@temporalio/activity@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/activity/-/activity-1.1.0.tgz#6c32e23682f882f55d446bde56b76f66521c633e"
+  integrity sha512-F5dU99NJhF1pf+uEj3cl7bh2mv313s1HvPiH1CEmj1691h95hyGfMkBvWAefG+QBKz2ws8FGIA2nttiAzKp8uQ==
   dependencies:
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/internal-workflow-common" "^1.1.0"
     abort-controller "^3.0.0"
 
-"@temporalio/client@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/client/-/client-1.0.0-rc.1.tgz#305c963aae6124d2218e6a4e72de3e6817f0bd83"
-  integrity sha512-kmo9dKpp6LvFRK6FFhFMvXedn0mZFG2YNbj9fngsbXX3eroESo02K20Ilqn//KHislkTWpvKD9X8OIPBXULJ/g==
+"@temporalio/client@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/client/-/client-1.1.0.tgz#41c37a358fab60daac2aade7e35e8885a2e2b622"
+  integrity sha512-vkfcqNHz/4cw9W/OwCYz/p/pBCmoK26MCcI+n5yJWMQgVRiLZzrGAHsqqdQ1OSyLM2RHorxZ15bl3fVqghPniA==
   dependencies:
     "@grpc/grpc-js" "^1.6.7"
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/internal-non-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/proto" "^1.0.0-rc.1"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/internal-non-workflow-common" "^1.1.0"
+    "@temporalio/internal-workflow-common" "^1.1.0"
+    "@temporalio/proto" "^1.1.0"
+    "@types/long" "^5.0.0"
+    long "^5.2.0"
     ms "^2.1.3"
-    protobufjs "6.11.2"
+    protobufjs "^7.0.0"
     uuid "^8.3.2"
 
-"@temporalio/common@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/common/-/common-1.0.0-rc.1.tgz#d039ef87d682d1eb3f72364a25fa1d21b2e02fb0"
-  integrity sha512-NyhRojq1fCfuROphIr13IxwhoKFWKhjefYEElhe6t9mDnUGrqm/n+9OUIIl7EtKlPwgE6fBOfSbwuSkU5GgzNA==
+"@temporalio/common@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/common/-/common-1.1.0.tgz#4497a1350fccacf430256c66bc54b6d865b6debe"
+  integrity sha512-VzmvXpQvEjBwmCCe97SN4RQG5isY/8N7R1FOeI/5j2Iyu/O5CLz1FVzmfxzn7K6TyTwBscm8BDSvGTs+gt3GHQ==
   dependencies:
     "@opentelemetry/api" "^1.0.3"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/proto" "^1.0.0-rc.1"
-    proto3-json-serializer "^1.0.2"
-    protobufjs "6.11.2"
+    "@temporalio/internal-workflow-common" "^1.1.0"
+    "@temporalio/proto" "^1.1.0"
+    proto3-json-serializer "^1.0.3"
+    protobufjs "^7.0.0"
 
-"@temporalio/core-bridge@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/core-bridge/-/core-bridge-1.0.0-rc.1.tgz#989ef523ed6d8d05e429718501e050070a98899f"
-  integrity sha512-6t1uPIV4Td5+6x3a+HJhK73auLt8bQvKBM13Gi4uustIrkVBZ/GlPjbz8KNUjafwOl72F4S0kD7vkCXil2zwiw==
+"@temporalio/core-bridge@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/core-bridge/-/core-bridge-1.1.0.tgz#6d2c89191fa8704771bbf0db783ac2c957ddc6ef"
+  integrity sha512-tq0CLSkqt8s+O69AbKZGOMvVOtzd7558ErBBwlgbcfm6mdPksSmZ0jmxGMfsvTvC3ZF/1uQVUEcvYZhISsfAag==
   dependencies:
     "@opentelemetry/api" "^1.1.0"
-    "@temporalio/internal-non-workflow-common" "^1.0.0-rc.1"
+    "@temporalio/internal-non-workflow-common" "^1.1.0"
     arg "^5.0.2"
     cargo-cp-artifact "^0.1.6"
     which "^2.0.2"
 
-"@temporalio/internal-non-workflow-common@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/internal-non-workflow-common/-/internal-non-workflow-common-1.0.0-rc.1.tgz#9c455a20a2ebd50899f86ca021ad00a247fa0a5d"
-  integrity sha512-ktvxSftZPyWH0wptRC0Bef2n0NwdNVmErWCLsJKf+4gBhBZSuncULAP/BA6ScR2HTWeS2zCDUZeuJLv7alR1Hw==
+"@temporalio/interceptors-opentelemetry@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/interceptors-opentelemetry/-/interceptors-opentelemetry-1.1.0.tgz#ba4ffa0d53908d743eb8d642413534ac38c72252"
+  integrity sha512-aSw39tsTfpdfh5Hk2m6YftGZHldwqkrxJw+8LAHxgM25kyU6aqHfcjmqrcf37JcHk3uXyFbEU+HUMd3x16zKEw==
+  dependencies:
+    "@opentelemetry/api" "^1.1.0"
+    "@opentelemetry/core" "^1.3.1"
+    "@opentelemetry/resources" "^1.3.1"
+    "@opentelemetry/sdk-trace-base" "^1.3.1"
+    "@temporalio/client" "^1.1.0"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/worker" "^1.1.0"
+    "@temporalio/workflow" "^1.1.0"
+
+"@temporalio/internal-non-workflow-common@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/internal-non-workflow-common/-/internal-non-workflow-common-1.1.0.tgz#c3289a0ef7b928b6da0faaa9969464f518279a25"
+  integrity sha512-Vm8lblZ2gNCLP8OK9BCc6DoSTtbi5srr1EVEqMAMwwZeJPMFMIcbCyF3s6fe/1zDoN4geoLYK6pgm8bNj0RoZw==
   dependencies:
     "@opentelemetry/api" "^1.0.3"
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/internal-workflow-common" "^1.1.0"
 
-"@temporalio/internal-workflow-common@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/internal-workflow-common/-/internal-workflow-common-1.0.0-rc.1.tgz#2cc157c858239635f3f86e04485f7c5e1472ad02"
-  integrity sha512-rYZTwYejsJtAjYsTfkTN5+cDiXbIgvh2UxvCP6QP264jb0Go6KgmVP4GrniaZW/zeEuYmIJw/aF7MjeNj3i5Wg==
+"@temporalio/internal-workflow-common@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/internal-workflow-common/-/internal-workflow-common-1.1.0.tgz#7fa754a088362846cb6ab6601e28eedf6b4828ee"
+  integrity sha512-uGJkZ7g6c82L40p87O4vGojfnlJrDdr/zeYhd7LYnYUSvekUXAUA+urWmIHgLW0FPwvEvjShvlrLVoZ+WHyZ/Q==
   dependencies:
-    "@temporalio/proto" "^1.0.0-rc.1"
+    "@temporalio/proto" "^1.1.0"
     long "^5.2.0"
     ms "^2.1.3"
 
-"@temporalio/proto@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/proto/-/proto-1.0.0-rc.1.tgz#3fb058071f599ab584026db5d7247bd370303542"
-  integrity sha512-kjwIgPqwTjj7yHBV6b/4skqLcjCgQYPMfjhtw2to9xNFeEG0oFrGrumulpSMVCeB7mVvsVu5PKvSqsI8EibWDQ==
+"@temporalio/proto@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/proto/-/proto-1.1.0.tgz#659e66e0186d5fc38858b05cd89fe1ed4be3bbc4"
+  integrity sha512-XLD2uYewDap8OOAGfauSRcAT6iH5H8YcyqXVlJ9Cdfy2DUvmtge/lichDhFAYOUcT4KkB7LEgZ1Q1pFzemAFYw==
   dependencies:
     "@types/long" "^4.0.2"
     long "^5.2.0"
-    protobufjs "6.11.2"
+    protobufjs "^7.0.0"
 
-"@temporalio/testing@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/testing/-/testing-1.0.0-rc.1.tgz#0dc2f86db38028a35ce06d1149e5025302f9746c"
-  integrity sha512-cyrZP1uF5b6ecpFazz2GnjnbXt9Trg/WjUqjQHKToMxKEvP7Ia+OhxN2ECSAlZOO4jXfeDF1F0/okkgYo9EgIw==
+"@temporalio/testing@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/testing/-/testing-1.1.0.tgz#f3a835e4ebe9c42994a5673df19a7b9d6ffce4b2"
+  integrity sha512-EcUqQpkOtQXZjnPQ6bUhNdM9cpWknZqNvd+JwRbe+msE2w+CLzSFJSF83OYew4R68FCYLE1isgtKZbw/GOVzIQ==
   dependencies:
     "@grpc/grpc-js" "^1.6.7"
-    "@temporalio/activity" "^1.0.0-rc.1"
-    "@temporalio/client" "^1.0.0-rc.1"
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/worker" "^1.0.0-rc.1"
+    "@temporalio/activity" "^1.1.0"
+    "@temporalio/client" "^1.1.0"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/worker" "^1.1.0"
     "@types/long" "^4.0.2"
     abort-controller "^3.0.0"
-    get-port "^6.1.2"
+    get-port "^5.0.0"
     got "^12.1.0"
     long "^5.2.0"
-    protobufjs "6.11.2"
+    protobufjs "^7.0.0"
     tar-stream "^2.2.0"
     unzipper "^0.10.11"
 
-"@temporalio/worker@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/worker/-/worker-1.0.0-rc.1.tgz#f31353b368415092adec37a45cde13111ebd73b9"
-  integrity sha512-RoiNJCkZ+BX/WRQ12EW4PohFWXpiYsp24yJ4+YdOFK/onVrCkrUeqBp4vRV07DlvT+4wnSqqG9zJMZAf17mwEQ==
+"@temporalio/worker@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/worker/-/worker-1.1.0.tgz#d3fcb697b761c744f91d257563754929a831f510"
+  integrity sha512-ECmkG+PZiGTvpsnP/zr7UgZyRrdaD+OVkMC6nhmHYsjBH3gfEA5BBwR+leTx9xDoWxe20XGDnXGGal+zZBhj9Q==
   dependencies:
     "@opentelemetry/api" "^1.1.0"
     "@swc/core" "^1.2.204"
-    "@temporalio/activity" "^1.0.0-rc.1"
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/core-bridge" "^1.0.0-rc.1"
-    "@temporalio/internal-non-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/proto" "^1.0.0-rc.1"
-    "@temporalio/workflow" "^1.0.0-rc.1"
+    "@temporalio/activity" "^1.1.0"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/core-bridge" "^1.1.0"
+    "@temporalio/internal-non-workflow-common" "^1.1.0"
+    "@temporalio/internal-workflow-common" "^1.1.0"
+    "@temporalio/proto" "^1.1.0"
+    "@temporalio/workflow" "^1.1.0"
     abort-controller "^3.0.0"
     cargo-cp-artifact "^0.1.6"
     heap-js "^2.2.0"
@@ -1569,17 +1614,18 @@
     source-map "^0.7.4"
     source-map-loader "^4.0.0"
     swc-loader "^0.2.3"
+    terser "^5.14.2"
     unionfs "^4.4.0"
     webpack "^5.73.0"
 
-"@temporalio/workflow@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@temporalio/workflow/-/workflow-1.0.0-rc.1.tgz#a171c4c01c5492540bfa0d4a4bba85d0137a7ff0"
-  integrity sha512-nrfB91hjHkrqhwIZUonIQQfVv2t7mz3np/Om+YaFuPi2aMZfQpTGWuf9qRYpOi6mxQSQCT3YNQ1S6js/TSCkvg==
+"@temporalio/workflow@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@temporalio/workflow/-/workflow-1.1.0.tgz#61aae830175b5a2d62d14659df517f1991992800"
+  integrity sha512-r3yndVZF8kGH1XOLlTyNbA/LmoV6cZYYCw/PSfAg2yh5CENWpSMGzn8xoOMyNARrmBqGVg7tSF/cV4KCXBjs7g==
   dependencies:
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/internal-workflow-common" "^1.0.0-rc.1"
-    "@temporalio/proto" "^1.0.0-rc.1"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/internal-workflow-common" "^1.1.0"
+    "@temporalio/proto" "^1.1.0"
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
@@ -1725,6 +1771,13 @@
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.2.tgz#b74129719fc8d11c01868010082d483b7545591a"
   integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
+
+"@types/long@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/long/-/long-5.0.0.tgz#daaa7b7f74c919c946ff74889d5ca2afe363b2cd"
+  integrity sha512-eQs9RsucA/LNjnMoJvWG/nXa7Pot/RbBzilF/QRIU/xRl+0ApxrSUFsV5lmf01SvSlqMzJ7Zwxe440wmz2SJGA==
+  dependencies:
+    long "*"
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "18.0.0"
@@ -2944,10 +2997,10 @@ get-package-type@^0.1.0:
   resolved "https://registry.yarnpkg.com/get-package-type/-/get-package-type-0.1.0.tgz#8de2d803cff44df3bc6c456e6668b36c3926e11a"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
-get-port@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/get-port/-/get-port-6.1.2.tgz#c1228abb67ba0e17fb346da33b15187833b9c08a"
-  integrity sha512-BrGGraKm2uPqurfGVj/z97/zv8dPleC6x9JBNRTrDNtCkkRF4rPwrQXFgL7+I+q8QSdU4ntLQX2D7KIxSy8nGw==
+get-port@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/get-port/-/get-port-5.1.1.tgz#0469ed07563479de6efb986baf053dcd7d4e3193"
+  integrity sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==
 
 get-stream@^5.1.0:
   version "5.2.0"
@@ -3754,15 +3807,15 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+long@*, long@^5.0.0, long@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/long/-/long-5.2.0.tgz#2696dadf4b4da2ce3f6f6b89186085d94d52fd61"
+  integrity sha512-9RTUNjK60eJbx3uz+TEGF7fUr29ZDxR5QzXcyDpeSfeH28S9ycINflOgOlppit5U+4kNTe83KQnMEerw7GmE8w==
+
 long@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
   integrity sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
-
-long@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/long/-/long-5.2.0.tgz#2696dadf4b4da2ce3f6f6b89186085d94d52fd61"
-  integrity sha512-9RTUNjK60eJbx3uz+TEGF7fUr29ZDxR5QzXcyDpeSfeH28S9ycINflOgOlppit5U+4kNTe83KQnMEerw7GmE8w==
 
 lowercase-keys@^2.0.0:
   version "2.0.0"
@@ -4089,31 +4142,12 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-proto3-json-serializer@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/proto3-json-serializer/-/proto3-json-serializer-1.0.2.tgz#bb5fe808a60f43bf96d2ce6d5063d8552ae69f06"
-  integrity sha512-wHxf8jYZ/LUP3M7XmULDKnbxBn+Bvk6SM+tDCPVTp9vraIzUi9hHsOBb1n2Y0VV0ukx4zBN/2vzMQYs4KWwRpg==
+proto3-json-serializer@^1.0.3:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/proto3-json-serializer/-/proto3-json-serializer-1.1.0.tgz#52d9c73b24d25ff925639e1e5a01ac883460149f"
+  integrity sha512-SjXwUWe/vANGs/mJJTbw5++7U67nwsymg7qsoPtw6GiXqw3kUy8ByojrlEdVE2efxAdKreX8WkDafxvYW95ZQg==
   dependencies:
-    protobufjs "^6.11.3"
-
-protobufjs@6.11.2:
-  version "6.11.2"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.2.tgz#de39fabd4ed32beaa08e9bb1e30d08544c1edf8b"
-  integrity sha512-4BQJoPooKJl2G9j3XftkIXjoC9C0Av2NOrWmbLWT1vH32GcSUHjM0Arra6UfTsVyfMAuFzaLucXn1sadxJydAw==
-  dependencies:
-    "@protobufjs/aspromise" "^1.1.2"
-    "@protobufjs/base64" "^1.1.2"
-    "@protobufjs/codegen" "^2.0.4"
-    "@protobufjs/eventemitter" "^1.1.0"
-    "@protobufjs/fetch" "^1.1.0"
-    "@protobufjs/float" "^1.0.2"
-    "@protobufjs/inquire" "^1.1.0"
-    "@protobufjs/path" "^1.1.2"
-    "@protobufjs/pool" "^1.1.0"
-    "@protobufjs/utf8" "^1.1.0"
-    "@types/long" "^4.0.1"
-    "@types/node" ">=13.7.0"
-    long "^4.0.0"
+    protobufjs "^7.0.0"
 
 protobufjs@^6.11.3:
   version "6.11.3"
@@ -4133,6 +4167,24 @@ protobufjs@^6.11.3:
     "@types/long" "^4.0.1"
     "@types/node" ">=13.7.0"
     long "^4.0.0"
+
+protobufjs@^7.0.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-7.1.0.tgz#5174b5f96fad4f7dea7dd4abd594042ac360e665"
+  integrity sha512-rCuxKlh0UQKSMjrpIcTLbR5TtGQ52cgs1a5nUoPBAKOccdPblN67BJtjrbtudUJK6HmBvUdsmymyYOzO7lxZEA==
+  dependencies:
+    "@protobufjs/aspromise" "^1.1.2"
+    "@protobufjs/base64" "^1.1.2"
+    "@protobufjs/codegen" "^2.0.4"
+    "@protobufjs/eventemitter" "^1.1.0"
+    "@protobufjs/fetch" "^1.1.0"
+    "@protobufjs/float" "^1.0.2"
+    "@protobufjs/inquire" "^1.1.0"
+    "@protobufjs/path" "^1.1.2"
+    "@protobufjs/pool" "^1.1.0"
+    "@protobufjs/utf8" "^1.1.0"
+    "@types/node" ">=13.7.0"
+    long "^5.0.0"
 
 pump@^3.0.0:
   version "3.0.0"
@@ -4578,17 +4630,19 @@ tar-stream@^2.2.0:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-temporalio@^1.0.0-rc.1:
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/temporalio/-/temporalio-1.0.0-rc.1.tgz#bc686ac6c964502cb8aab31c09a972c3d8b10891"
-  integrity sha512-h/tt9Uw5+WujPWE85r0HFjaSZCDp6Oqv5klATAPpYx53uyFtp3CkRfl602Qfm7k1DEhVwCdOq5hthi3sX7x8WA==
+temporalio@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/temporalio/-/temporalio-1.1.0.tgz#d50c06d867bc8fedc890e52321db62b3c2dbead4"
+  integrity sha512-fgmCacBz1XAoNzoXSXuue9nGs5yMYzjjbfoQOO+D6Hg9dqIktGTcOdTeErNvEbOZT9fbSB0UE81RuYLJDS3W6A==
   dependencies:
-    "@temporalio/activity" "^1.0.0-rc.1"
-    "@temporalio/client" "^1.0.0-rc.1"
-    "@temporalio/common" "^1.0.0-rc.1"
-    "@temporalio/proto" "^1.0.0-rc.1"
-    "@temporalio/worker" "^1.0.0-rc.1"
-    "@temporalio/workflow" "^1.0.0-rc.1"
+    "@temporalio/activity" "^1.1.0"
+    "@temporalio/client" "^1.1.0"
+    "@temporalio/common" "^1.1.0"
+    "@temporalio/interceptors-opentelemetry" "^1.1.0"
+    "@temporalio/proto" "^1.1.0"
+    "@temporalio/testing" "^1.1.0"
+    "@temporalio/worker" "^1.1.0"
+    "@temporalio/workflow" "^1.1.0"
 
 terminal-link@^2.0.0:
   version "2.1.1"
@@ -4608,6 +4662,16 @@ terser-webpack-plugin@^5.1.3:
     schema-utils "^3.1.1"
     serialize-javascript "^6.0.0"
     terser "^5.7.2"
+
+terser@^5.14.2:
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.15.0.tgz#e16967894eeba6e1091509ec83f0c60e179f2425"
+  integrity sha512-L1BJiXVmheAQQy+as0oF3Pwtlo4s3Wi1X2zNZ2NxOB4wx9bdS9Vk67XQENLFdLYGCK/Z2di53mTj/hBafR+dTA==
+  dependencies:
+    "@jridgewell/source-map" "^0.3.2"
+    acorn "^8.5.0"
+    commander "^2.20.0"
+    source-map-support "~0.5.20"
 
 terser@^5.7.2:
   version "5.14.1"
