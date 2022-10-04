@@ -1,17 +1,16 @@
 import { Worker } from '@temporalio/worker';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { defaultWorkerOptions } from 'worker';
-import { example } from 'workflows';
+import { testSignalling, testSignalling2 } from '../workflows';
+import { temporal } from '@temporalio/proto';
 
-const taskQueue = 'hello';
+const taskQueue = 'signal';
 
-describe('Test hello world workflow with test framework.', () => {
+describe('Test Signalling workflows.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;
     beforeAll(async () => {
-        const SegfaultHandler = require('segfault-handler');
-        SegfaultHandler.registerHandler('crash.log');
         temporalTestEnv = await TestWorkflowEnvironment.create({
             testServer: {
               stdio: 'inherit',
@@ -24,25 +23,24 @@ describe('Test hello world workflow with test framework.', () => {
           });
         workerRunning = worker.run(); // Do not await, because we will shut it down after the test.
     }, 1000 * 60);
-    afterAll(async () => {
-        worker.shutdown();
-        await workerRunning; // Wait for shutdown.
-        await temporalTestEnv.teardown();
-    });
     it(
         'Run test.',
         async () => {
-            const workflowId = 'test-hello-test-framework';
             const client = temporalTestEnv.workflowClient;
-            
-            const res = await client.execute(example, {
+
+            const handle = await client.start(testSignalling2, {
                 taskQueue,
-                workflowId,
-                args: ["test"]
+                workflowId: "testSignalling2"
             });
 
-            expect(res).toBe("Hello, test!");
+            await client.execute(testSignalling, {
+                taskQueue,
+                workflowId: "testSignalling"
+            });
+
+            const status = (await handle.describe()).status.code;
+            expect(status).toEqual(temporal.api.enums.v1.WorkflowExecutionStatus.WORKFLOW_EXECUTION_STATUS_COMPLETED);
         },
-        1000 * 100
+        1000 * 10
     );
 });

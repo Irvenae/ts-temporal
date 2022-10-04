@@ -8,9 +8,11 @@ const taskQueue = 'condition';
 
 xdescribe('Test hello world workflow with Temporal cluster.', () => {
     let worker: Worker;
+    let client: WorkflowClient;
     let workerRunning: Promise<void>;
     beforeAll(async () => {
-        worker = await createWorker(taskQueue);
+        client = new WorkflowClient();
+        worker = await createWorker(taskQueue, client);
         workerRunning = worker.run(); // Do not await, because we will shut it down after the test.
     }, 1000 * 60);
     afterAll(async () => {
@@ -21,7 +23,6 @@ xdescribe('Test hello world workflow with Temporal cluster.', () => {
         'Run test.',
         async () => {
             const workflowId = 'test-condition';
-            const client = new WorkflowClient();
             await terminateRunningTestWorkflow(client, workflowId);
 
             await client.start(testCondition, {

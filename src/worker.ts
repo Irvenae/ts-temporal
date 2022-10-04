@@ -1,10 +1,13 @@
 import path from 'path';
 import type { Configuration as WebpackConfiguration } from 'webpack';
 
+import { Context } from '@temporalio/activity';
+import { WorkflowClient } from '@temporalio/client';
 import { Worker } from '@temporalio/worker';
 import * as activities from 'activities';
+import { ActivityInboundInterceptor } from 'activityInterceptor';
 
-export function defaultWorkerOptions() {
+export function defaultWorkerOptions(client: WorkflowClient) {
     return {
       workflowsPath: require.resolve('./workflows'),
       activities,
@@ -21,13 +24,16 @@ export function defaultWorkerOptions() {
           console.log(config);
           return config;
         }
-      }
+      },
+      interceptors: {
+        activityInbound: [(ctx: Context) => new ActivityInboundInterceptor(ctx, client)]
+      },
     };
   }
 
-export async function createWorker(taskQueue: string) {
+export async function createWorker(taskQueue: string, client: WorkflowClient) {
   return await Worker.create({
-    ...defaultWorkerOptions(),
+    ...defaultWorkerOptions(client),
     taskQueue
   });
 }

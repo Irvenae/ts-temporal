@@ -2,19 +2,18 @@ import { proxyActivities, defineSignal, setHandler, condition, sleep } from '@te
 // Only import the activity types
 import type * as activities from 'activities';
 
-const { greet } = proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
+const { greet, signalWorkflow } = proxyActivities<typeof activities>({
+  startToCloseTimeout: '10 minute',
 });
 
 /** A workflow that simply calls an activity */
-export async function example(name: string): Promise<string> {
-    return await greet(name);
+export async function example(name: string, time?: number): Promise<string> {
+    return await greet(name, time);
 }
 
 export const testSignal = defineSignal("test");
 
 export async function testCondition() {
-  debugger;
   let state = 'WAITING_ON_INPUT';
   setHandler(testSignal, () => {
     state = 'UPDATE';
@@ -25,4 +24,24 @@ export async function testCondition() {
   const res = await greet("test");
   await conditionPromise;
   return res;
+}
+
+export async function testSignalling() {
+  let state = 'WAITING_ON_INPUT';
+  setHandler(testSignal, () => {
+    state = 'UPDATE';
+  });
+
+  await signalWorkflow('testSignalling2', "test", []);
+
+  await condition(() => state === 'UPDATE', '10s' );
+}
+
+export async function testSignalling2() {
+  let state = 'WAITING_ON_INPUT';
+  setHandler(testSignal, () => {
+    state = 'UPDATE';
+  });
+
+  await condition(() => state === 'UPDATE', '10s' );
 }

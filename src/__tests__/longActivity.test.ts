@@ -3,15 +3,13 @@ import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { defaultWorkerOptions } from 'worker';
 import { example } from 'workflows';
 
-const taskQueue = 'hello';
+const taskQueue = 'longActivity';
 
-describe('Test hello world workflow with test framework.', () => {
+describe('Test long activity with test framework.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;
     beforeAll(async () => {
-        const SegfaultHandler = require('segfault-handler');
-        SegfaultHandler.registerHandler('crash.log');
         temporalTestEnv = await TestWorkflowEnvironment.create({
             testServer: {
               stdio: 'inherit',
@@ -32,17 +30,17 @@ describe('Test hello world workflow with test framework.', () => {
     it(
         'Run test.',
         async () => {
-            const workflowId = 'test-hello-test-framework';
+            const workflowId = 'testLongActivity';
             const client = temporalTestEnv.workflowClient;
             
             const res = await client.execute(example, {
                 taskQueue,
                 workflowId,
-                args: ["test"]
+                args: ["test", 1000*60*5]
             });
 
             expect(res).toBe("Hello, test!");
         },
-        1000 * 100
+        1000*60*6
     );
 });
