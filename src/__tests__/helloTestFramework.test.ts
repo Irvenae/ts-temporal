@@ -12,16 +12,12 @@ describe('Test hello world workflow with test framework.', () => {
     beforeAll(async () => {
         const SegfaultHandler = require('segfault-handler');
         SegfaultHandler.registerHandler('crash.log');
-        temporalTestEnv = await TestWorkflowEnvironment.create({
-            testServer: {
-              stdio: 'inherit',
-            },
-          });
-          worker = await Worker.create({
-            ...defaultWorkerOptions(temporalTestEnv.workflowClient),
-            connection: temporalTestEnv.nativeConnection,
-            taskQueue,
-          });
+        temporalTestEnv = await TestWorkflowEnvironment.createTimeSkipping();
+        worker = await Worker.create({
+        ...defaultWorkerOptions(temporalTestEnv.client.workflow),
+        connection: temporalTestEnv.nativeConnection,
+        taskQueue,
+        });
         workerRunning = worker.run(); // Do not await, because we will shut it down after the test.
     }, 1000 * 60);
     afterAll(async () => {
@@ -33,7 +29,7 @@ describe('Test hello world workflow with test framework.', () => {
         'Run test.',
         async () => {
             const workflowId = 'test-hello-test-framework';
-            const client = temporalTestEnv.workflowClient;
+            const client = temporalTestEnv.client.workflow;
             
             const res = await client.execute(example, {
                 taskQueue,

@@ -1,5 +1,5 @@
 import { Worker } from '@temporalio/worker';
-import { Connection } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { defaultWorkerOptions } from '../worker';
 
 xdescribe('replay', () => {
@@ -8,7 +8,8 @@ xdescribe('replay', () => {
     async () => {
       const workflowId = 'test-condition';
       const connection = await Connection.connect({});
-      const { history } = await connection.workflowService.getWorkflowExecutionHistory({
+      const client = new Client({ connection });
+      const { history } = await client.workflowService.getWorkflowExecutionHistory({
         namespace: 'default',
         execution: {
           workflowId
@@ -20,7 +21,7 @@ xdescribe('replay', () => {
 
       await Worker.runReplayHistory(
         {
-          ...defaultWorkerOptions(),
+          ...defaultWorkerOptions(client.workflow),
           replayName: workflowId
         },
         history

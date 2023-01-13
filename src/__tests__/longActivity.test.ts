@@ -10,13 +10,9 @@ describe('Test long activity with test framework.', () => {
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;
     beforeAll(async () => {
-        temporalTestEnv = await TestWorkflowEnvironment.create({
-            testServer: {
-              stdio: 'inherit',
-            },
-          });
+        temporalTestEnv = await TestWorkflowEnvironment.createTimeSkipping();
           worker = await Worker.create({
-            ...defaultWorkerOptions(temporalTestEnv.workflowClient),
+            ...defaultWorkerOptions(temporalTestEnv.client.workflow),
             connection: temporalTestEnv.nativeConnection,
             taskQueue,
           });
@@ -31,7 +27,7 @@ describe('Test long activity with test framework.', () => {
         'Run test.',
         async () => {
             const workflowId = 'testLongActivity';
-            const client = temporalTestEnv.workflowClient;
+            const client = temporalTestEnv.client.workflow;
             
             const res = await client.execute(example, {
                 taskQueue,

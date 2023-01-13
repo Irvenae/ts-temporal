@@ -11,13 +11,9 @@ describe('Test Signalling workflows.', () => {
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;
     beforeAll(async () => {
-        temporalTestEnv = await TestWorkflowEnvironment.create({
-            testServer: {
-              stdio: 'inherit',
-            },
-          });
+        temporalTestEnv = await TestWorkflowEnvironment.createTimeSkipping();
           worker = await Worker.create({
-            ...defaultWorkerOptions(temporalTestEnv.workflowClient),
+            ...defaultWorkerOptions(temporalTestEnv.client.workflow),
             connection: temporalTestEnv.nativeConnection,
             taskQueue,
           });
@@ -26,7 +22,7 @@ describe('Test Signalling workflows.', () => {
     it(
         'Run test.',
         async () => {
-            const client = temporalTestEnv.workflowClient;
+            const client = temporalTestEnv.client.workflow;
 
             const handle = await client.start(testSignalling2, {
                 taskQueue,
