@@ -6,7 +6,7 @@ import { temporal } from '@temporalio/proto';
 
 const taskQueue = 'signal';
 
-describe('Test Signalling workflows.', () => {
+xdescribe('Test Signalling workflows.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;

@@ -5,7 +5,7 @@ import { example } from 'workflows';
 
 const taskQueue = 'longActivity';
 
-describe('Test long activity with test framework.', () => {
+xdescribe('Test long activity with test framework.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;

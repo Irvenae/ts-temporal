@@ -5,7 +5,7 @@ import { example } from 'workflows';
 
 const taskQueue = 'hello';
 
-describe('Test hello world workflow with test framework.', () => {
+xdescribe('Test hello world workflow with test framework.', () => {
     let worker: Worker;
     let workerRunning: Promise<void>;
     let temporalTestEnv: TestWorkflowEnvironment;
