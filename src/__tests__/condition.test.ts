@@ -1,7 +1,7 @@
 import { Worker } from '@temporalio/worker';
 import { WorkflowClient } from '@temporalio/client';
 import { createWorker } from '../worker';
-import { testCondition, testSignal } from '../workflows';
+import { testCondition } from '../workflows';
 import { terminateRunningTestWorkflow } from '../utils';
 
 const taskQueue = 'condition';
@@ -33,7 +33,7 @@ xdescribe('Test hello world workflow with Temporal cluster.', () => {
             await new Promise( f => setTimeout(f, 5000));
 
             const handle = client.getHandle(workflowId);
-            await handle.signal(testSignal);
+            await handle.signal('test');
 
             const res = await handle.result(); // Do not forget to wait on result.
 

@@ -1,8 +1,8 @@
-import { proxyActivities, defineSignal, setHandler, condition, sleep } from '@temporalio/workflow';
+import { proxyActivities, defineSignal, setHandler, condition, sleep, CancellationScope, isCancellation } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from 'activities';
 
-const { greet, signalWorkflow } = proxyActivities<typeof activities>({
+const { greet, greet2, greet3, signalWorkflow } = proxyActivities<typeof activities>({
   startToCloseTimeout: '10 minute',
 });
 
@@ -11,7 +11,7 @@ export async function example(name: string, time?: number): Promise<string> {
     return await greet(name, time);
 }
 
-export const testSignal = defineSignal("test");
+const testSignal = defineSignal("test");
 
 export async function testCondition() {
   let state = 'WAITING_ON_INPUT';
@@ -45,3 +45,28 @@ export async function testSignalling2() {
 
   await condition(() => state === 'UPDATE', '10s' );
 }
+
+export async function testNetworkError() {
+    let scope: CancellationScope = new CancellationScope({cancellable:true});
+    await greet('test'); 
+    
+    setHandler(testSignal, () => {
+      scope.cancel();
+    });
+  
+      await greet2('test');
+      for (;;) {
+        try {
+          // eslint-disable-next-line no-loop-func
+          await scope.run(async () => {
+              await greet3('test');
+              await sleep('1d');
+      
+          });
+          break;
+        } catch (err) {
+          if (!isCancellation(err) || CancellationScope.current().consideredCancelled) throw err;
+          scope = new CancellationScope({ cancellable: true });
+        }
+      }
+  }
