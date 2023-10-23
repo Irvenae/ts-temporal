@@ -2,6 +2,7 @@ import path from 'path';
 import type { Configuration as WebpackConfiguration } from 'webpack';
 
 import { Context } from '@temporalio/activity';
+import { Duration } from '@temporalio/common';
 import { WorkflowClient } from '@temporalio/client';
 import { Worker } from '@temporalio/worker';
 import * as activities from 'activities';
@@ -11,7 +12,7 @@ export function defaultWorkerOptions(client: WorkflowClient) {
     return {
       workflowsPath: require.resolve('./workflows'),
       activities,
-      shutdownGraceTime: '10s',
+      shutdownGraceTime: '10s' as Duration,
       debugMode: true,
       bundlerOptions: {
         webpackConfigHook: (config: WebpackConfiguration) => {
